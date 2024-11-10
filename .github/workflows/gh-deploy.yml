@@ -14,10 +14,12 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Install dependencies
-      run: npm install  # Use `yarn install` if you use Yarn
+      run: npm install  # Or use `yarn install` if you use Yarn
 
     - name: Build the project
-      run: npm run build  # Ensure this matches your build command
+      run: |
+        export NODE_OPTIONS=--openssl-legacy-provider  # Fix for Node.js 17+ OpenSSL issue
+        npm run build  # Ensure this matches your build command
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
