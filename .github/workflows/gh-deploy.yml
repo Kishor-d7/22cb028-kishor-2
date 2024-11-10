@@ -13,19 +13,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'  # Specify your required Node version
-
     - name: Install dependencies
-      run: npm install  # Or use `yarn install` if you use Yarn
+      run: npm install  # Use `yarn install` if you use Yarn
 
     - name: Build the project
-      run: npm run build  # Adjust if your build command is different
+      run: npm run build  # Ensure this matches your build command
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build  # Replace with your build output directory (e.g., `./dist` or `./public`)
+        publish_dir: ./build  # Adjust to your actual build output directory (e.g., `./dist`)
